@@ -10,7 +10,7 @@ const path = require('path');
 const helmet = require('helmet');
 const csrf = require('csurf');
 const { middlewareGlobal, checkCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
-
+ 
 
 mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true })
 .then(() => {
