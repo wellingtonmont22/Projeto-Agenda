@@ -1,6 +1,7 @@
 const { String } = require('core-js');
 const mongoose = require('mongoose');
 const validator = require('validator');
+const bcryptjs = require('bcryptjs')
 
 const LoginSchema = new mongoose.Schema(
 {
@@ -19,7 +20,14 @@ class Login {
     async register(){
         this.valida();
         if(this.errors.length > 0) return;
-        
+
+        await this.userExists();
+
+        if(this.errors.length > 0) return;
+
+        const salt = bcryptjs.genSaltSync();
+        this.body.password = bcryptjs.hashSync(this.body.password, salt);
+
         try{
             this.user = await LoginModel.create(this.body);
         }catch(e){
@@ -29,7 +37,6 @@ class Login {
     }
     valida(){
         this.cleanUp();
-        //Validação
         //O email precisa ser válido
         if(!validator.isEmail(this.body.email)){
             this.errors.push('E-mail inválido');
@@ -52,6 +59,11 @@ class Login {
             email: this.body.email,
             password: this.body.password
         }
+    }
+    async userExists(){
+        const user = await LoginModel.findOne({ email: this.body.email });
+        if(user) this.errors.push('Usuário já existe.');
+
     }
 }
 
