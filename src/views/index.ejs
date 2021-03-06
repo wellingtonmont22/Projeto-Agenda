@@ -9,26 +9,18 @@
 
             <%- include('includes/messages'); %>
 
-            <div class="responsive-table">
-                <table class="table">
+            <div class="table-responsive">
+                <table class="table my-3">
+                    <% contatos.forEach(contato => { %>
                     <tr>
-                        <td>Maria</td>
-                        <td>Carlos</td>
-                        <td>Zefinha</td>
-                        <td>Josefina</td>
+                        <td><%=contato.nome %></td>
+                        <td><%=contato.sobrenome %></td>
+                        <td><%=contato.telefone %></td>
+                        <td><%=contato.email %></td>
+                        <td><a href="/contato/index/<%= contato._id %>">Editar</a></td>
+                        <td><a href="/contato/delete/<%= contato._id%>" class="text-danger">Apagar</a></td>
                     </tr>
-                    <tr>
-                        <td>Maria</td>
-                        <td>Carlos</td>
-                        <td>Zefinha</td>
-                        <td>Josefina</td>
-                    </tr>
-                    <tr>
-                        <td>Maria</td>
-                        <td>Carlos</td>
-                        <td>Zefinha</td>
-                        <td>Josefina</td>
-                    </tr>
+                    <% }); %>
                 </table>
             </div>
 

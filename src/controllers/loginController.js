@@ -47,8 +47,8 @@ exports.login = async function (req, res) {
         return;
     }
     req.flash('success', 'Você entrou no sistema.');
+    /*Salvando a sessão - guarda os dados do usuário se o mesmo for validado*/ 
     req.session.user = login.user;
-    console.log(login.user)
     req.session.save(function() {
         return res.redirect('index');
     });
@@ -59,5 +59,5 @@ exports.login = async function (req, res) {
 }
 exports.logout = function (req, res) {
     req.session.destroy();
-    res.redirect('/');
+    res.redirect('/login/index');
 }
