@@ -4,11 +4,12 @@
     <div class="row">
         <div class="col-lg-2"></div>
         <div class="col-lg-8 my-3">
+            
+            <% if(user) { %>
             <h1 class="text-center">Agenda</h1>
             <p class="text-center lead">Seus contados estão abaixo</p>
-
+    
             <%- include('includes/messages'); %>
-            <% if(user) { %>
             <div class="table-responsive">
                 <table class="table my-3">
                     <% contatos.forEach(contato => { %>
@@ -23,6 +24,9 @@
                     <% }); %>
                 </table>
             </div>
+            <% }else{ %> 
+                <h1 class="text-center display-5">Bem-vindo a Agenda</h1>
+                <p class="text-center lead">basta da um click no entrar para ter acesso a aplicação</p>
             <% } %> 
         </div>
         <div class="col-lg-2"></div>
