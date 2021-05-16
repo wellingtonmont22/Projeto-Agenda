@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-2"></div>
         <div class="col-lg-8 my-3">
-            <h1 class="text-center">Faça login ou registresse abaixo</h1>
+            <h1 class="text-center">Faça login ou crie cadastro abaixo</h1>
             <p class="text-center lead">faça o login ou cadastre-se</p>
             <%- include('includes/messages'); %>
             <div class="row">
@@ -31,6 +31,7 @@
                     <p>possui conta?Se sim,faça login abaixo.</p>
                     <form action="/login/login" method="POST">
                         <div class="mb-3">
+                        <input type="hidden" name="_csrf" value=<%= csrfToken %>>
                           <label class="form-label">Seu Email</label>
                           <input type="email" class="form-control" name="email">
                         </div>
