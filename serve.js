@@ -23,7 +23,7 @@ mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifi
 app.use(helmet())//Segurança
 app.use(express.urlencoded({extended: true}));//configuação para que o express exiba o conteudo do parametro
 app.use(express.json());
-app.use(express.static(path.resolve(__dirname, 'public')));//definindo pasta do contéudo estatico
+app.use(express.static(path.join(__dirname, 'public')));//definindo pasta do contéudo estatico
 
 //Configuração das sessions
 
